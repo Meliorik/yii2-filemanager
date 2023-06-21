@@ -1,4 +1,4 @@
-<div role="filemanager-modal" class="modal" tabindex="-1"
+<div role="dialog" id="filemanager-modal" class="modal" tabindex="-1"
      data-frame-id="<?= $frameId ?>"
      data-frame-src="<?= $frameSrc ?>"
      data-btn-id="<?= $btnId ?>"

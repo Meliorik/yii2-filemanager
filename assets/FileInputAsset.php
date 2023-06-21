@@ -13,7 +13,7 @@ class FileInputAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap5\BootstrapAsset',
         'yii\web\JqueryAsset',
         'pendalf89\filemanager\assets\ModalAsset',
     ];

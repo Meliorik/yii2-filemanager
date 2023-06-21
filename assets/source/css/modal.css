@@ -1,16 +1,16 @@
 /*------------------------------------*\
     #MODAL
 \*------------------------------------*/
-[role="filemanager-modal"] {
+#filemanager-modal {
   z-index: 70000;
 }
-[role="filemanager-modal"] .modal-title {
+#filemanager-modal .modal-title {
   font-size: 1.2em;
 }
-[role="filemanager-modal"] .modal-dialog {
+#filemanager-modal .modal-dialog {
   width: 1000px;
 }
-[role="filemanager-modal"] .modal-body {
+#filemanager-modal .modal-body {
   padding-top: 8px;
   padding-bottom: 8px;
 }

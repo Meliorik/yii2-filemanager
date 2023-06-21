@@ -11,6 +11,6 @@ class ModalAsset extends AssetBundle
         'css/modal.css',
     ];
     public $depends = [
-        'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap5\BootstrapAsset',
     ];
 }

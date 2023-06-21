@@ -5,7 +5,7 @@ function filemanagerTinyMCE(callback, value, meta) {
             + '" id="' + modal.attr("data-frame-id") + '" frameborder="0" role="filemanager-frame"></iframe>');
 
     iframe.on("load", function() {
-        var modal = $(this).parents('[role="filemanager-modal"]'),
+        var modal = $(this).parents('#filemanager-modal'),
             input = $("#" + modal.attr("data-input-id"));
 
         $(this).contents().find(".dashboard").on("click", "#insert-btn", function(e) {
@@ -46,7 +46,7 @@ function getFormData(form) {
 $(document).ready(function() {
 
     function frameHandler(e) {
-        var modal = $(this).parents('[role="filemanager-modal"]'),
+        var modal = $(this).parents('#filemanager-modal'),
             imageContainer = $(modal.attr("data-image-container")),
             pasteData = modal.attr("data-paste-data"),
             input = $("#" + modal.attr("data-input-id"));
