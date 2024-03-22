@@ -1,6 +1,25 @@
 /*------------------------------------*\
     #VARIABLES
 \*------------------------------------*/
+
+#filemanager .flex {
+  display: flex;
+}
+
+#filemanager .flex > .column.left {
+
+}
+
+#filemanager .flex > .column.right {
+  flex: 1 1 100%;
+  margin-left: 1rem;
+  padding: 0.5rem;
+  background: #eee;
+}
+
+#filemanager .group-mediafilesearch-tagids {
+  padding-left: 1px;
+}
 /*------------------------------------*\
     #MAIN
 \*------------------------------------*/
@@ -14,25 +33,32 @@
     #ITEMS
 \*------------------------------------*/
 .list-view {
-  float: left;
-  width: 660px;
+/*  float: left;
+  width: 660px;*/
 }
 .list-view .items {
-  border-right: 1px solid #e5e5e5;
-  border-bottom: 1px solid #e5e5e5;
+  display: grid;
+  grid-auto-flow: row dense;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 10px 10px;
+  grid-template-areas: ". . . . .";
 }
 .list-view .items .item {
-  display: inline-block;
-  margin-bottom: 3px;
+/*  display: inline-block;
+  margin-bottom: 3px;*/
+  border: 1px solid #ddd;
 }
 .list-view .items .item a {
   position: relative;
-  display: inline-block;
+  display: block;
   color: #5ba6f7;
 }
 .list-view .items .item a img {
-  min-width: 128px;
-  min-height: 128px;
+  min-width: 100%;
+  min-height: 100%;
+  display: block;
+  object-fit: cover;
   opacity: .8;
 }
 .list-view .items .item a img:hover {
@@ -59,16 +85,14 @@
     #PAGINATION
 \*------------------------------------*/
 .pagination {
-  display: block;
   margin-top: 10px;
 }
 /*------------------------------------*\
     #DASHBOARD
 \*------------------------------------*/
 .dashboard {
-  width: 290px;
-  float: left;
-  padding-left: 10px;
+  margin: 1rem 0;
+  border-bottom: 1px solid #ddd;
 }
 .dashboard .loading {
   width: 298px;
@@ -86,9 +110,19 @@
 #uploadmanager .progress {
   margin-top: 10px;
 }
+/*#uploadmanager .template-upload {
+  opacity: 1!important;
+}*/
+#uploadmanager .template-upload td,
+#uploadmanager .template-download td {
+  vertical-align: middle;
+}
 /*------------------------------------*\
     #FILEINFO
 \*------------------------------------*/
+#fileinfo {
+  height: 100%;
+}
 #fileinfo img {
   float: left;
   max-width: 82px;
@@ -100,20 +134,30 @@
   list-style: none;
   font-size: .85em;
 }
+#fileinfo #control-form {
+  display: flex;
+  flex-direction: column;
+}
 #fileinfo .filename {
   clear: both;
   margin-bottom: 5px;
 }
-#fileinfo #control-form .form-group {
+#fileinfo .form-group {
   margin-bottom: 0;
 }
-#fileinfo #control-form .control-label {
+#fileinfo .control-label {
   margin-bottom: 0;
   font-size: .9em;
   font-weight: bold;
 }
-#fileinfo #control-form textarea {
+#fileinfo textarea {
   max-width: 100%;
+}
+#fileinfo .buttons {
+  margin-top: 1rem;
+}
+#fileinfo .buttons .btn-primary {
+  flex:1;
 }
 /*------------------------------------*\
     #SPIN ICONS
@@ -150,5 +194,51 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+
+@media (max-width: 950px) {
+  .list-view .items {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px 10px;
+    grid-template-areas: ". . . .";
+  }
+}
+
+@media (max-width: 850px) {
+  #filemanager > .flex {
+    display: block;
+  }
+  .list-view .items {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px 10px;
+    grid-template-areas: ". . . . .";
+  }
+  #filemanager .flex > .column.right {
+    margin-left: 0;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 750px) {
+  .list-view .items {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 5px 5px;
+    grid-template-areas: ". . . .";
+  }
+}
+
+@media (max-width: 550px) {
+  .list-view .items {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: ". . .";
+  }
+}
+
+@media (max-width: 410px) {
+  .list-view .items {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: ". .";
   }
 }

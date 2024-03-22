@@ -9,11 +9,17 @@ class DefaultController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        if (!Yii::$app->user->isGuest) {
+            return $this->render('index');
+        }
+        return $this->redirect('https://2doks.ru');
     }
 
     public function actionSettings()
     {
-        return $this->render('settings');
+        if (!Yii::$app->user->isGuest) {
+            return $this->render('settings');
+        }
+        return $this->redirect('https://2doks.ru');
     }
 }

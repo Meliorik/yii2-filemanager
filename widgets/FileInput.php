@@ -5,6 +5,7 @@ use Yii;
 use yii\helpers\Html;
 use yii\widgets\InputWidget;
 use pendalf89\filemanager\assets\FileInputAsset;
+use pendalf89\filemanager\models\Mediafile;
 use yii\helpers\Url;
 
 /**
@@ -103,7 +104,8 @@ class FileInput extends InputWidget
      * @var array widget html options
      */
     public $options = ['class' => 'form-control'];
-    
+
+    public $hiddenInput = false;
     /**
      *
      * @var array selecte the frameSrc in case you use a different module name
@@ -138,9 +140,24 @@ class FileInput extends InputWidget
     public function run()
     {
         if ($this->hasModel()) {
-            $replace['{input}'] = Html::activeTextInput($this->model, $this->attribute, $this->options);
+            if ($this->hiddenInput) {
+                $replace['{input}'] = Html::activeHiddenInput($this->model, $this->attribute, $this->options);
+            } else {
+                $replace['{input}'] = Html::activeTextInput($this->model, $this->attribute, $this->options);
+            }
         } else {
-            $replace['{input}'] = Html::textInput($this->name, $this->value, $this->options);
+            if ($this->hiddenInput) {
+                $replace['{input}'] = Html::hiddenInput($this->name, $this->value, $this->options);
+            } else {
+                $replace['{input}'] = Html::textInput($this->name, $this->value, $this->options);
+            }
+        }
+
+        $replace['{img}'] = '';
+
+        if ($this->model->{$this->attribute}) {
+            $mediafile = Mediafile::loadImage($this->model->{$this->attribute});
+            $replace['{img}'] = $mediafile->getThumbImage('medium');
         }
 
         $replace['{button}'] = Html::tag($this->buttonTag, $this->buttonName, $this->buttonOptions);

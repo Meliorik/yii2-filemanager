@@ -33,7 +33,10 @@ $bundle = FilemanagerAsset::register($this);
         ) ?></li>
 </ul>
 
-<div class="filename"><?= $model->filename ?></div>
+<div class="form-group filename">
+    <label class="control-label" for="filename">Имя файла</label>
+    <input id="filename" class="form-control input-sm"  readonly disabled value="<?= $model->filename ?>">
+</div>
 
 <?php $form = ActiveForm::begin([
     'action' => ['file/update', 'id' => $model->id],
@@ -80,9 +83,11 @@ $bundle = FilemanagerAsset::register($this);
 
     <?= Html::hiddenInput('id', $model->id) ?>
 
-    <?= Html::button(Module::t('main', 'Insert'), ['id' => 'insert-btn', 'class' => 'btn btn-primary btn-sm']) ?>
+    <div class="input-group buttons">
+        <?= Html::button(Module::t('main', 'Insert'), ['id' => 'insert-btn', 'class' => 'btn btn-primary']) ?>
 
-    <?= Html::submitButton(Module::t('main', 'Save'), ['class' => 'btn btn-success btn-sm']) ?>
+        <?= Html::submitButton(Module::t('main', 'Save'), ['class' => 'btn btn-success']) ?>
+    </div>
 
     <?php if ($message = Yii::$app->session->getFlash('mediafileUpdateResult')) : ?>
         <div class="text-success"><?= $message ?></div>

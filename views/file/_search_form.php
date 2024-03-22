@@ -4,7 +4,7 @@ use pendalf89\filemanager\Module;
 use pendalf89\filemanager\models\Tag;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use yii\bootstrap5\ActiveForm;
 
 /* @var $this yii\web\View */
 ?>

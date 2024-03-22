@@ -439,13 +439,13 @@ class Mediafile extends ActiveRecord
      */
     public function getThumbUrl($alias)
     {
-        $thumbs = $this->getThumbs();
-
         if ($alias === 'original') {
-            return $this->url;
+            return Yii::$app->params['siteUrl'] . $this->url;
         }
-
-        return !empty($thumbs[$alias]) ? $thumbs[$alias] : '';
+        
+        $thumbs = $this->getThumbs();
+        
+        return !empty($thumbs[$alias]) ? Yii::$app->params['siteUrl'] . $thumbs[$alias] : '';
     }
 
     /**
@@ -595,4 +595,11 @@ class Mediafile extends ActiveRecord
 
         return false;
     }
+
+    public static function loadImage($mediafile_id)
+    {
+        $mediafile = Mediafile::findOne(['id' => $mediafile_id]);
+        return $mediafile;
+    }
+
 }
