@@ -103,6 +103,8 @@ class FileInput extends InputWidget
      * @var array widget html options
      */
     public $options = ['class' => 'form-control'];
+
+    public $hiddenInput = false;
     
     /**
      *
@@ -136,11 +138,26 @@ class FileInput extends InputWidget
      * Runs the widget.
      */
     public function run()
-    {
+        {
         if ($this->hasModel()) {
-            $replace['{input}'] = Html::activeTextInput($this->model, $this->attribute, $this->options);
+            if ($this->hiddenInput) {
+                $replace['{input}'] = Html::activeHiddenInput($this->model, $this->attribute, $this->options);
+            } else {
+                $replace['{input}'] = Html::activeTextInput($this->model, $this->attribute, $this->options);
+            }
         } else {
-            $replace['{input}'] = Html::textInput($this->name, $this->value, $this->options);
+            if ($this->hiddenInput) {
+                $replace['{input}'] = Html::hiddenInput($this->name, $this->value, $this->options);
+            } else {
+                $replace['{input}'] = Html::textInput($this->name, $this->value, $this->options);
+            }
+        }
+
+        $replace['{img}'] = '';
+
+        if ($this->model->{$this->attribute}) {
+            $mediafile = Mediafile::loadImage($this->model->{$this->attribute});
+            $replace['{img}'] = $mediafile->getThumbImage('medium');
         }
 
         $replace['{button}'] = Html::tag($this->buttonTag, $this->buttonName, $this->buttonOptions);
